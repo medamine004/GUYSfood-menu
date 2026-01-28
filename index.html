@@ -111,35 +111,35 @@
     .logo-container { display: flex; align-items: center; gap: 1rem; }
     [dir="rtl"] .logo-container { flex-direction: row-reverse; }
 
-    .logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
+    .logo { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
     
     .brand-text h1 { 
-      font-size: 1.4rem; margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      font-size: 1.2rem; margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
       background: linear-gradient(45deg, #fff, #ccc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .brand-text .slogan { font-size: 0.75rem; opacity: 0.7; margin: 0; font-weight: 300; letter-spacing: 1px; }
+    .brand-text .slogan { font-size: 0.7rem; opacity: 0.7; margin: 0; font-weight: 300; letter-spacing: 1px; }
 
     @media (max-width: 360px) {
         .brand-text .slogan { display: none; }
-        .brand-text h1 { font-size: 1.1rem; }
+        .brand-text h1 { font-size: 1rem; }
     }
 
     .header-controls { display: flex; align-items: center; gap: 0.5rem; }
     [dir="rtl"] .header-controls { flex-direction: row-reverse; }
 
-    .lang-switch { display: flex; background: rgba(255,255,255,0.08); border-radius: 30px; padding: 3px; }
-    .lang-btn { background: transparent; border: none; color: var(--text-header); padding: 0.4rem 0.8rem; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.75rem; transition: all 0.3s; }
+    .lang-switch { display: flex; background: rgba(255,255,255,0.08); border-radius: 30px; padding: 2px; }
+    .lang-btn { background: transparent; border: none; color: var(--text-header); padding: 0.3rem 0.6rem; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.7rem; transition: all 0.3s; }
     .lang-btn.active { background: var(--primary); color: white; }
 
     .cart-btn, .theme-toggle-btn {
       position: relative; background: transparent; border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text-header); font-size: 1.2rem; cursor: pointer;
-      width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+      color: var(--text-header); font-size: 1.1rem; cursor: pointer;
+      width: 38px; height: 38px; display: flex; align-items: center; justify-content: center;
       border-radius: 50%; transition: all 0.3s ease; touch-action: manipulation;
     }
     .cart-count {
       position: absolute; top: -5px; right: -5px; background: var(--primary); color: white;
-      font-size: 0.7rem; font-weight: 700; width: 20px; height: 20px; border-radius: 50%;
+      font-size: 0.65rem; font-weight: 700; width: 18px; height: 18px; border-radius: 50%;
       display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-header);
     }
     [dir="rtl"] .cart-count { right: auto; left: -5px; }
@@ -149,12 +149,12 @@
     ───────────────────────────────────────────────────────────── */
     .promo-marquee {
       background: linear-gradient(90deg, #d63031, #e17055); color: white;
-      overflow: hidden; white-space: nowrap; height: 44px; line-height: 44px;
-      font-size: 0.95rem; font-weight: 600; position: relative; z-index: 900;
+      overflow: hidden; white-space: nowrap; height: 40px; line-height: 40px;
+      font-size: 0.85rem; font-weight: 600; position: relative; z-index: 900;
     }
     .marquee-content { display: inline-block; padding-left: 100%; animation: marquee 40s linear infinite; }
     [dir="rtl"] .marquee-content { animation: marquee-rtl 40s linear infinite; }
-    .marquee-content span { margin: 0 3rem; display: inline-block; }
+    .marquee-content span { margin: 0 2rem; display: inline-block; }
     @keyframes marquee    { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
     @keyframes marquee-rtl { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
@@ -162,13 +162,13 @@
        HERO VIDEO
     ───────────────────────────────────────────────────────────── */
     .promo-video-wrapper {
-      position: relative; width: 94%; max-width: 1200px; margin: 1.5rem auto;
+      position: relative; width: 94%; max-width: 1200px; margin: 1rem auto;
       border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
     }
     .promo-video-wrapper::before { content: ""; display: block; padding-top: 50%; } 
     .promo-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
     @media (max-width: 768px) {
-      .promo-video-wrapper { width: 100%; border-radius: 0; margin: 0 auto 1.5rem; border:none; }
+      .promo-video-wrapper { width: 100%; border-radius: 0; margin: 0 auto 1rem; border:none; }
       .promo-video-wrapper::before { padding-top: 56.25%; } 
     }
 
@@ -177,105 +177,155 @@
     ───────────────────────────────────────────────────────────── */
     .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; flex: 1; }
     .categories-wrapper {
-      position: sticky; top: calc(75px + env(safe-area-inset-top)); z-index: 800;
-      background: var(--bg-body); padding: 1rem 0; margin-bottom: 1.5rem; overflow-x: auto;
+      position: sticky; top: calc(65px + env(safe-area-inset-top)); z-index: 800;
+      background: var(--bg-body); padding: 0.8rem 0; margin-bottom: 1rem; overflow-x: auto;
       white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; 
       mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
     }
     .categories-wrapper::-webkit-scrollbar { display: none; }
-    .categories { display: inline-flex; gap: 0.8rem; padding: 0 1rem; }
+    .categories { display: inline-flex; gap: 0.6rem; padding: 0 1rem; }
     [dir="rtl"] .categories { direction: rtl; }
     .category-btn { 
-      padding: 0.6rem 1.4rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
+      padding: 0.5rem 1.2rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
       background: var(--bg-category-btn); color: var(--text-category-btn); cursor: pointer;
-      font-weight: 600; font-size: 0.9rem; transition: all 0.3s; flex-shrink: 0; touch-action: manipulation;
+      font-weight: 600; font-size: 0.85rem; transition: all 0.3s; flex-shrink: 0; touch-action: manipulation;
     }
     .category-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
     /* ─────────────────────────────────────────────────────────────
-       MENU GRID (FIX CRITIQUE IMAGES)
+       MENU GRID - ROBUST & COMPACT FIX
     ───────────────────────────────────────────────────────────── */
     .menu-grid { 
-      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; 
+      display: grid; 
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+      gap: 1.2rem; 
+      padding-bottom: 2rem;
     }
 
     .menu-card {
       background: var(--bg-card);
-      border-radius: 18px;
+      border-radius: 16px;
       /* FIX IOS WEBVIEW: Stacking context explicit */
       position: relative;
       isolation: isolate; 
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.3s ease;
+      transition: transform 0.2s ease;
       display: flex; flex-direction: column;
-      /* FIX IOS BORDER RADIUS CLIPPING */
-      transform: translate3d(0,0,0);
-      -webkit-mask-image: -webkit-radial-gradient(white, black);
+      /* FIX IOS BORDER RADIUS CLIPPING & FLICKERING */
+      -webkit-transform: translateZ(0);
+      transform: translateZ(0);
+      -webkit-backface-visibility: hidden;
+      backface-visibility: hidden;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
 
     /* --- CONTENEUR IMAGE ROBUSTE --- */
     .product-image-wrapper {
       position: relative;
       width: 100%;
-      /* FIX ASPECT RATIO: Utilisation du padding hack pour support 100% des navigateurs */
-      padding-top: 66.66%; /* Ratio 3:2 (plus standard pour la food) */
-      background: #eee; /* Placeholder couleur si image charge mal */
+      /* Default desktop behavior: Aspect Ratio */
+      aspect-ratio: 16/10;
+      background: #eee;
       overflow: hidden;
       z-index: 1;
     }
 
-    /* L'image remplit le conteneur hacké */
     .product-image {
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
       width: 100%; height: 100%;
       object-fit: cover;
-      display: block; /* Supprime l'espace fantôme inline */
-      transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+      display: block;
+      transition: transform 0.6s ease;
     }
 
     /* --- BADGE AU DESSUS DE L'IMAGE --- */
     .card-badge {
-      position: absolute; top: 10px; left: 10px;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
-      color: white; font-size: 0.7rem; padding: 4px 10px; border-radius: 12px;
-      font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
-      /* Z-INDEX IMPORTANT POUR RESTER VISIBLE */
-      z-index: 10;
-      pointer-events: none; /* Permet de cliquer sur la carte à travers le badge */
+      position: absolute; top: 8px; left: 8px;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+      color: white; font-size: 0.65rem; padding: 3px 8px; border-radius: 8px;
+      font-weight: 700; border: 1px solid rgba(255,255,255,0.2);
+      z-index: 10; pointer-events: none;
     }
-    [dir="rtl"] .card-badge { left: auto; right: 10px; }
+    [dir="rtl"] .card-badge { left: auto; right: 8px; }
 
-    .card-content { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; z-index: 2; position: relative; background: var(--bg-card); }
-    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
-    .card-title { font-size: 1.2rem; font-weight: 700; color: var(--text-card-title); line-height: 1.2; }
+    .card-content { 
+      padding: 1rem; 
+      flex: 1; 
+      display: flex; 
+      flex-direction: column; 
+      z-index: 2; 
+      background: var(--bg-card); 
+    }
+    
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.4rem; }
+    
+    .card-title { 
+      font-size: 1.1rem; 
+      font-weight: 700; 
+      color: var(--text-card-title); 
+      line-height: 1.2;
+      /* Limit title to 2 lines */
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
+    }
+    
     .card-desc { 
-      color: var(--text-card-desc); font-size: 0.85rem; margin-bottom: 1rem; flex: 1;
-      display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;
+      color: var(--text-card-desc); font-size: 0.8rem; margin-bottom: 0.8rem; flex: 1;
+      line-height: 1.4;
+      /* Limit desc to 2 lines for uniformity */
+      display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;
     }
 
     .card-footer { 
       display: flex; justify-content: space-between; align-items: center; margin-top: auto; 
-      padding-top: 1rem; border-top: 1px solid rgba(255,255,255,0.05);
+      padding-top: 0.8rem; border-top: 1px solid rgba(255,255,255,0.05);
     }
     [dir="rtl"] .card-footer { flex-direction: row-reverse; }
 
-    .price { font-size: 1.3rem; font-weight: 800; color: var(--primary); }
+    .price { font-size: 1.1rem; font-weight: 800; color: var(--primary); }
     
     .add-btn { 
       background: var(--text-main); color: var(--bg-body); border: none;
-      padding: 0.6rem 1.2rem; border-radius: 10px; cursor: pointer;
-      font-weight: 700; font-size: 0.9rem; transition: all 0.2s; touch-action: manipulation;
-      /* Assure que le bouton est au dessus de tout effet visuel */
+      padding: 0.5rem 1rem; border-radius: 8px; cursor: pointer;
+      font-weight: 700; font-size: 0.85rem; transition: all 0.2s; touch-action: manipulation;
       position: relative; z-index: 5;
     }
 
-    @media (max-width: 480px) {
-        .menu-grid { grid-template-columns: 1fr; gap: 1rem; }
-        .product-image-wrapper { padding-top: 60%; /* Ratio un peu plus large sur mobile */ }
-        .card-content { padding: 1rem; }
+    /* ─────────────────────────────────────────────────────────────
+       MEDIA QUERIES - MOBILE SPECIFIC (The Fix)
+    ───────────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+        .container { padding: 0 0.8rem; }
+        
+        /* GRID 2 COLONNES POUR COMPACITÉ */
+        .menu-grid { 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 0.8rem; 
+        }
+
+        /* IMAGE: HAUTEUR FIXE POUR MOBILE */
+        .product-image-wrapper {
+            aspect-ratio: auto; /* Désactiver ratio css */
+            height: 120px; /* Hauteur fixe compacte */
+            width: 100%;
+        }
+
+        /* AJUSTEMENTS CONTENU CARTE */
+        .card-content { padding: 0.8rem 0.6rem; }
+        .card-title { font-size: 0.95rem; margin-bottom: 2px; }
+        .card-desc { font-size: 0.7rem; -webkit-line-clamp: 2; margin-bottom: 0.6rem; }
+        .card-footer { padding-top: 0.6rem; }
+        .price { font-size: 1rem; }
+        
+        /* BOUTON AJOUTER PLUS PETIT */
+        .add-btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
+        .add-btn i { font-size: 0.9rem; }
+    }
+
+    /* TRES PETITS ECRANS (iPhone SE, etc.) */
+    @media (max-width: 360px) {
+       .product-image-wrapper { height: 110px; }
+       .menu-grid { gap: 0.6rem; }
     }
 
     /* ─────────────────────────────────────────────────────────────
@@ -283,7 +333,7 @@
     ───────────────────────────────────────────────────────────── */
     .main-footer {
       background: var(--bg-footer); color: var(--text-footer);
-      padding: 3rem 1.5rem 2rem; margin-top: 4rem; text-align: center;
+      padding: 3rem 1.5rem 2rem; margin-top: 2rem; text-align: center;
       border-top: 1px solid rgba(255,255,255,0.05);
       padding-bottom: max(2rem, env(safe-area-inset-bottom)); 
     }
@@ -316,7 +366,7 @@
     }
     .cart-panel.open { transform: translateX(0); }
 
-    .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.2); }
+    .cart-header { padding: 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; background: rgba(0,0,0,0.02); }
     [dir="rtl"] .cart-header { flex-direction: row-reverse; }
 
     .cart-body { flex: 1; overflow-y: auto; padding: 1.5rem; overscroll-behavior: contain; }
@@ -326,17 +376,17 @@
 
     .cart-item-img { width: 70px; height: 70px; object-fit: cover; border-radius: 10px; }
     .cart-item-info { flex: 1; }
-    .cart-item-title { font-weight: 700; font-size: 1rem; color: var(--text-main); display: block; margin-bottom: 4px;}
-    .cart-item-supps { font-size: 0.8rem; color: var(--gray); margin-bottom: 4px; }
+    .cart-item-title { font-weight: 700; font-size: 0.95rem; color: var(--text-main); display: block; margin-bottom: 4px;}
+    .cart-item-supps { font-size: 0.75rem; color: var(--gray); margin-bottom: 4px; }
     
     .remove-btn {
       position: absolute; top: 0; right: 0; background: none; border: none; color: var(--danger);
-      font-size: 1.2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; padding: 10px;
+      font-size: 1.1rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; padding: 5px;
     }
     [dir="rtl"] .remove-btn { right: auto; left: 0; }
 
     .cart-footer { padding: 1.5rem; background: var(--bg-card); border-top: 1px solid var(--border-light); }
-    .cart-total-row { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 800; margin-bottom: 1.2rem; }
+    .cart-total-row { display: flex; justify-content: space-between; font-size: 1.2rem; font-weight: 800; margin-bottom: 1.2rem; }
     [dir="rtl"] .cart-total-row { flex-direction: row-reverse; }
 
     .mode-switch { background: var(--bg-category-btn); padding: 4px; border-radius: 12px; display: flex; margin-bottom: 1.2rem; }
@@ -344,7 +394,7 @@
     .mode-option.active { background: var(--bg-card); color: var(--primary); }
 
     .order-btn {
-      width: 100%; padding: 1.1rem; background: var(--success); color: white; border: none;
+      width: 100%; padding: 1rem; background: var(--success); color: white; border: none;
       border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 10px;
       transition: background 0.3s; touch-action: manipulation;
@@ -367,36 +417,38 @@
       box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
-    .modal-header { padding: 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
-    .modal-title { margin: 0; font-size: 1.3rem; font-weight: 700; }
-    .modal-close { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--gray); padding: 5px; }
-    .modal-body { padding: 1.5rem; flex: 1; overflow-y: auto; overscroll-behavior: contain; }
+    .modal-header { padding: 1.2rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
+    .modal-title { margin: 0; font-size: 1.2rem; font-weight: 700; }
+    .modal-close { background: none; border: none; font-size: 1.8rem; cursor: pointer; color: var(--gray); padding: 5px; }
+    .modal-body { padding: 1.2rem; flex: 1; overflow-y: auto; overscroll-behavior: contain; }
 
-    .supplement-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+    .supplement-row { display: flex; justify-content: space-between; align-items: center; padding: 0.8rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
     [dir="rtl"] .supplement-row { flex-direction: row-reverse; }
 
     .qty-control { display: flex; align-items: center; gap: 10px; background: var(--bg-category-btn); padding: 4px 8px; border-radius: 30px; }
-    .qty-btn { width: 32px; height: 32px; border-radius: 50%; border:none; background: var(--bg-card); color: var(--text-main); cursor: pointer; font-weight: bold; touch-action: manipulation; }
-    .qty-val { width: 25px; text-align: center; font-weight: 600; }
+    .qty-btn { width: 28px; height: 28px; border-radius: 50%; border:none; background: var(--bg-card); color: var(--text-main); cursor: pointer; font-weight: bold; touch-action: manipulation; }
+    .qty-val { width: 20px; text-align: center; font-weight: 600; font-size: 0.9rem; }
 
-    .modal-footer { padding: 1.5rem; border-top: 1px solid var(--border-light); padding-bottom: max(1.5rem, env(safe-area-inset-bottom)); }
+    .modal-footer { padding: 1.2rem; border-top: 1px solid var(--border-light); padding-bottom: max(1.2rem, env(safe-area-inset-bottom)); }
     .confirm-btn {
       width: 100%; padding: 1rem; background: var(--primary); color: white; border: none;
-      border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer;
+      border-radius: 12px; font-weight: 700; font-size: 1rem; cursor: pointer;
       display: flex; justify-content: space-between; touch-action: manipulation;
     }
 
     #success-message {
       position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
-      background: var(--success); color: white; padding: 1rem 2rem; border-radius: 50px; 
+      background: var(--success); color: white; padding: 0.8rem 1.5rem; border-radius: 50px; 
       z-index: 6000; font-weight: 600; opacity: 0; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       bottom: max(30px, calc(env(safe-area-inset-bottom) + 10px));
+      font-size: 0.9rem;
+      white-space: nowrap;
     }
     #success-message.show { transform: translateX(-50%) translateY(0); opacity: 1; }
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     
     .table-input {
-      width: 100%; padding: 1rem; margin-bottom: 1rem; background: var(--bg-category-btn);
+      width: 100%; padding: 0.8rem; margin-bottom: 1rem; background: var(--bg-category-btn);
       border: 2px solid transparent; border-radius: 10px; color: var(--text-main); font-size: 16px;
     }
     .table-input:focus { border-color: var(--primary); outline: none; }
