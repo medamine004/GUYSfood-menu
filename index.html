@@ -12,10 +12,9 @@
 
   <style>
     /* ─────────────────────────────────────────────────────────────
-       CSS VARIABLES & THEME SETUP
+       CSS VARIABLES
     ───────────────────────────────────────────────────────────── */
     :root {
-      /* Palette de base */
       --primary: #d63031;
       --primary-dark: #b71c1c;
       --light: #f8f9fa;
@@ -23,9 +22,7 @@
       --gray: #636e72;
       --success: #00b894;
       --danger: #ff7675;
-      --gold: #fdcb6e;
-      --gold-dark: #e17055;
-
+      
       --bg-body: var(--light);
       --text-main: var(--dark);
       --bg-header: rgba(255, 255, 255, 0.95);
@@ -36,11 +33,6 @@
       --bg-category-btn: #dfe6e9;
       --text-category-btn: var(--dark);
       
-      --shadow-card: none;
-      --shadow-deep: none;
-      
-      --bg-marquee: linear-gradient(90deg, #d63031, #e17055);
-      --text-marquee: white;
       --bg-cart: white;
       --text-cart: var(--dark);
       --bg-modal: white;
@@ -50,11 +42,9 @@
       --bg-footer: #f1f2f6;
       --text-footer: var(--dark);
 
-      /* HAUTEUR DYNAMIQUE (Fix 100vh mobile) */
       --vh: 1vh; 
     }
 
-    /* MODE DARK */
     :root.dark {
       --primary: #e84118;
       --bg-body: #000000;
@@ -66,32 +56,22 @@
       --text-card-desc: #b2bec3;
       --bg-category-btn: #2d3436;
       --text-category-btn: #dfe6e9;
-      
-      --shadow-card: none;
-      --shadow-deep: none;
-      
-      --bg-marquee: linear-gradient(90deg, #c23616, #e84118);
-      --text-marquee: #ffffff;
       --bg-cart: #090909;
       --text-cart: #f5f6fa;
       --bg-modal: #121212;
       --border-light: #2d3436;
       --border-dark: #636e72;
-      --gold: #f1c40f;
-
       --bg-footer: #0a0a0a;
       --text-footer: #b2bec3;
     }
 
     * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 
-    /* ─────────────────────────────────────────────────────────────
-       OPTIMISATION GLOBALE & MOBILE
-    ───────────────────────────────────────────────────────────── */
+    /* RESET & BASE */
     html, body {
         width: 100%;
-        overflow-x: hidden; /* Empêche le scroll horizontal accidentel */
-        overscroll-behavior-y: none; /* Empêche le rebond élastique sur tout le site */
+        overflow-x: hidden;
+        overscroll-behavior-y: none;
     }
 
     body {
@@ -102,127 +82,65 @@
       transition: background 0.4s ease, color 0.4s ease;
       display: flex;
       flex-direction: column;
-      
-      /* HAUTEUR ROBUSTE : Calcul JS + Fallback CSS moderne */
       min-height: 100vh; 
       min-height: calc(var(--vh, 1vh) * 100);
-      
-      /* SAFE AREA (iPhone X+) */
       padding-left: env(safe-area-inset-left);
       padding-right: env(safe-area-inset-right);
       padding-bottom: env(safe-area-inset-bottom);
     }
 
-    /* Empêcher le zoom sur input iOS */
-    input, select, textarea {
-        font-size: 16px !important; /* Taille min pour éviter le zoom */
-    }
-
-    [dir="rtl"] body {
-      font-family: 'Tajawal', sans-serif;
-    }
+    input, select, textarea { font-size: 16px !important; }
+    [dir="rtl"] body { font-family: 'Tajawal', sans-serif; }
 
     /* ─────────────────────────────────────────────────────────────
-       HEADER STICKY & SAFE AREA
+       HEADER
     ───────────────────────────────────────────────────────────── */
     .header-modern {
       background: var(--bg-header);
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       color: var(--text-header);
-      
-      /* Padding dynamique pour Notch / Dynamic Island */
       padding: 0.8rem 1rem;
       padding-top: max(0.8rem, env(safe-area-inset-top));
-      
-      position: sticky;
-      top: 0;
-      z-index: 2000;
+      position: sticky; top: 0; z-index: 2000;
       border-bottom: 1px solid rgba(255,255,255,0.05);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 0.6rem;
+      display: flex; align-items: center; justify-content: space-between; gap: 0.6rem;
     }
-
     [dir="rtl"] .header-modern { flex-direction: row-reverse; }
 
     .logo-container { display: flex; align-items: center; gap: 1rem; }
     [dir="rtl"] .logo-container { flex-direction: row-reverse; }
 
-    .logo { 
-      width: 50px; height: 50px; 
-      border-radius: 50%; 
-      object-fit: cover; 
-      border: 2px solid var(--primary);
-    }
+    .logo { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid var(--primary); }
     
     .brand-text h1 { 
-      font-size: 1.4rem; 
-      margin: 0; 
-      font-weight: 800; 
-      text-transform: uppercase; 
-      letter-spacing: 0.5px;
-      background: linear-gradient(45deg, #fff, #ccc);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      font-size: 1.4rem; margin: 0; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+      background: linear-gradient(45deg, #fff, #ccc); -webkit-background-clip: text; -webkit-text-fill-color: transparent;
     }
-    .brand-text .slogan { 
-      font-size: 0.75rem; 
-      opacity: 0.7; 
-      margin: 0; 
-      font-weight: 300; 
-      letter-spacing: 1px;
-    }
+    .brand-text .slogan { font-size: 0.75rem; opacity: 0.7; margin: 0; font-weight: 300; letter-spacing: 1px; }
 
-    /* Masquer le slogan sur très petits écrans */
     @media (max-width: 360px) {
         .brand-text .slogan { display: none; }
         .brand-text h1 { font-size: 1.1rem; }
     }
 
-    .header-controls {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
+    .header-controls { display: flex; align-items: center; gap: 0.5rem; }
     [dir="rtl"] .header-controls { flex-direction: row-reverse; }
 
-    /* Lang Switch */
     .lang-switch { display: flex; background: rgba(255,255,255,0.08); border-radius: 30px; padding: 3px; }
-    .lang-btn { 
-      background: transparent; border: none; color: var(--text-header); 
-      padding: 0.4rem 0.8rem; border-radius: 20px; cursor: pointer; 
-      font-weight: 600; font-size: 0.75rem; transition: all 0.3s; 
-    }
+    .lang-btn { background: transparent; border: none; color: var(--text-header); padding: 0.4rem 0.8rem; border-radius: 20px; cursor: pointer; font-weight: 600; font-size: 0.75rem; transition: all 0.3s; }
     .lang-btn.active { background: var(--primary); color: white; }
 
-    /* Buttons Icons */
     .cart-btn, .theme-toggle-btn {
-      position: relative;
-      background: transparent;
-      border: 1px solid rgba(255,255,255,0.1);
-      color: var(--text-header);
-      font-size: 1.2rem;
-      cursor: pointer;
-      width: 42px; height: 42px;
-      display: flex; align-items: center; justify-content: center;
-      border-radius: 50%;
-      transition: all 0.3s ease;
-      /* Optimisation Touch */
-      touch-action: manipulation;
+      position: relative; background: transparent; border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text-header); font-size: 1.2rem; cursor: pointer;
+      width: 42px; height: 42px; display: flex; align-items: center; justify-content: center;
+      border-radius: 50%; transition: all 0.3s ease; touch-action: manipulation;
     }
-
     .cart-count {
-      position: absolute;
-      top: -5px; right: -5px;
-      background: var(--primary);
-      color: white;
-      font-size: 0.7rem; font-weight: 700;
-      width: 20px; height: 20px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      border: 2px solid var(--bg-header);
+      position: absolute; top: -5px; right: -5px; background: var(--primary); color: white;
+      font-size: 0.7rem; font-weight: 700; width: 20px; height: 20px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center; border: 2px solid var(--bg-header);
     }
     [dir="rtl"] .cart-count { right: auto; left: -5px; }
 
@@ -230,145 +148,112 @@
        PROMO MARQUEE
     ───────────────────────────────────────────────────────────── */
     .promo-marquee {
-      background: var(--bg-marquee);
-      color: var(--text-marquee);
-      overflow: hidden;
-      white-space: nowrap;
-      height: 44px; line-height: 44px;
-      font-size: 0.95rem; font-weight: 600;
-      position: relative;
-      z-index: 900;
+      background: linear-gradient(90deg, #d63031, #e17055); color: white;
+      overflow: hidden; white-space: nowrap; height: 44px; line-height: 44px;
+      font-size: 0.95rem; font-weight: 600; position: relative; z-index: 900;
     }
-
-    .marquee-content {
-      display: inline-block;
-      padding-left: 100%;
-      animation: marquee 40s linear infinite;
-    }
+    .marquee-content { display: inline-block; padding-left: 100%; animation: marquee 40s linear infinite; }
     [dir="rtl"] .marquee-content { animation: marquee-rtl 40s linear infinite; }
-
     .marquee-content span { margin: 0 3rem; display: inline-block; }
     @keyframes marquee    { 0% { transform: translateX(0); } 100% { transform: translateX(-100%); } }
     @keyframes marquee-rtl { 0% { transform: translateX(0); } 100% { transform: translateX(100%); } }
 
     /* ─────────────────────────────────────────────────────────────
-       VIDEO HERO
+       HERO VIDEO
     ───────────────────────────────────────────────────────────── */
     .promo-video-wrapper {
-      position: relative;
-      width: 94%;
-      max-width: 1200px;
-      margin: 1.5rem auto;
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
+      position: relative; width: 94%; max-width: 1200px; margin: 1.5rem auto;
+      border-radius: 20px; overflow: hidden; border: 1px solid rgba(255,255,255,0.1);
     }
     .promo-video-wrapper::before { content: ""; display: block; padding-top: 50%; } 
-    
-    .promo-video {
-      position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover;
-      transform: scale(1.02);
-    }
-    
+    .promo-video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform: scale(1.02); }
     @media (max-width: 768px) {
       .promo-video-wrapper { width: 100%; border-radius: 0; margin: 0 auto 1.5rem; border:none; }
       .promo-video-wrapper::before { padding-top: 56.25%; } 
     }
 
     /* ─────────────────────────────────────────────────────────────
-       LAYOUT & CATEGORIES
+       CATEGORIES
     ───────────────────────────────────────────────────────────── */
     .container { max-width: 1280px; margin: 0 auto; padding: 0 1rem; flex: 1; }
-    
     .categories-wrapper {
-      position: sticky; 
-      /* Calcul de la hauteur sticky prenant en compte le header et la safe-area */
-      top: calc(75px + env(safe-area-inset-top)); 
-      z-index: 800;
-      background: var(--bg-body);
-      padding: 1rem 0;
-      margin-bottom: 1.5rem;
-      overflow-x: auto;
-      white-space: nowrap;
-      -ms-overflow-style: none; scrollbar-width: none; 
+      position: sticky; top: calc(75px + env(safe-area-inset-top)); z-index: 800;
+      background: var(--bg-body); padding: 1rem 0; margin-bottom: 1.5rem; overflow-x: auto;
+      white-space: nowrap; -ms-overflow-style: none; scrollbar-width: none; 
       mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
       -webkit-mask-image: linear-gradient(90deg, transparent, #000 5%, #000 95%, transparent);
     }
     .categories-wrapper::-webkit-scrollbar { display: none; }
-
     .categories { display: inline-flex; gap: 0.8rem; padding: 0 1rem; }
     [dir="rtl"] .categories { direction: rtl; }
-
     .category-btn { 
       padding: 0.6rem 1.4rem; border-radius: 50px; border: 1px solid rgba(255,255,255,0.1);
-      background: var(--bg-category-btn); color: var(--text-category-btn);
-      cursor: pointer; font-weight: 600; font-size: 0.9rem; transition: all 0.3s;
-      flex-shrink: 0;
-      touch-action: manipulation;
+      background: var(--bg-category-btn); color: var(--text-category-btn); cursor: pointer;
+      font-weight: 600; font-size: 0.9rem; transition: all 0.3s; flex-shrink: 0; touch-action: manipulation;
     }
-    .category-btn.active { 
-      background: var(--primary); color: white; border-color: var(--primary);
-    }
+    .category-btn.active { background: var(--primary); color: white; border-color: var(--primary); }
 
     /* ─────────────────────────────────────────────────────────────
-       MENU GRID & CARDS
+       MENU GRID (FIX CRITIQUE IMAGES)
     ───────────────────────────────────────────────────────────── */
     .menu-grid { 
-      display: grid; 
-      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
-      gap: 1.5rem; 
-    }
-
-    /* Adaptation Mobile Grid */
-    @media (max-width: 480px) {
-        .menu-grid {
-            grid-template-columns: 1fr; /* Une seule colonne sur mobile */
-            gap: 1rem;
-        }
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.5rem; 
     }
 
     .menu-card {
       background: var(--bg-card);
       border-radius: 18px;
+      /* FIX IOS WEBVIEW: Stacking context explicit */
+      position: relative;
+      isolation: isolate; 
       overflow: hidden;
       border: 1px solid rgba(255,255,255,0.05);
       transition: transform 0.3s ease;
       display: flex; flex-direction: column;
+      /* FIX IOS BORDER RADIUS CLIPPING */
+      transform: translate3d(0,0,0);
+      -webkit-mask-image: -webkit-radial-gradient(white, black);
     }
 
+    /* --- CONTENEUR IMAGE ROBUSTE --- */
     .product-image-wrapper {
       position: relative;
-      height: 180px;
+      width: 100%;
+      /* FIX ASPECT RATIO: Utilisation du padding hack pour support 100% des navigateurs */
+      padding-top: 66.66%; /* Ratio 3:2 (plus standard pour la food) */
+      background: #eee; /* Placeholder couleur si image charge mal */
       overflow: hidden;
-    }
-    
-    @media (max-width: 480px) {
-      .product-image-wrapper { height: 200px; }
+      z-index: 1;
     }
 
+    /* L'image remplit le conteneur hacké */
     .product-image {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
       width: 100%; height: 100%;
       object-fit: cover;
+      display: block; /* Supprime l'espace fantôme inline */
       transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
     }
 
+    /* --- BADGE AU DESSUS DE L'IMAGE --- */
     .card-badge {
       position: absolute; top: 10px; left: 10px;
-      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px);
+      background: rgba(0,0,0,0.7); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
       color: white; font-size: 0.7rem; padding: 4px 10px; border-radius: 12px;
       font-weight: 600; border: 1px solid rgba(255,255,255,0.2);
+      /* Z-INDEX IMPORTANT POUR RESTER VISIBLE */
+      z-index: 10;
+      pointer-events: none; /* Permet de cliquer sur la carte à travers le badge */
     }
     [dir="rtl"] .card-badge { left: auto; right: 10px; }
 
-    .card-content { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; }
-    
+    .card-content { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; z-index: 2; position: relative; background: var(--bg-card); }
     .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.5rem; }
     .card-title { font-size: 1.2rem; font-weight: 700; color: var(--text-card-title); line-height: 1.2; }
-    
     .card-desc { 
       color: var(--text-card-desc); font-size: 0.85rem; margin-bottom: 1rem; flex: 1;
-      display: -webkit-box; 
-      -webkit-box-orient: vertical; overflow: hidden;
+      display: -webkit-box; -webkit-box-orient: vertical; overflow: hidden;
     }
 
     .card-footer { 
@@ -381,92 +266,53 @@
     
     .add-btn { 
       background: var(--text-main); color: var(--bg-body); border: none;
-      padding: 0.6rem 1.2rem; border-radius: 10px;
-      cursor: pointer; font-weight: 700; font-size: 0.9rem; transition: all 0.2s;
-      touch-action: manipulation;
+      padding: 0.6rem 1.2rem; border-radius: 10px; cursor: pointer;
+      font-weight: 700; font-size: 0.9rem; transition: all 0.2s; touch-action: manipulation;
+      /* Assure que le bouton est au dessus de tout effet visuel */
+      position: relative; z-index: 5;
+    }
+
+    @media (max-width: 480px) {
+        .menu-grid { grid-template-columns: 1fr; gap: 1rem; }
+        .product-image-wrapper { padding-top: 60%; /* Ratio un peu plus large sur mobile */ }
+        .card-content { padding: 1rem; }
     }
 
     /* ─────────────────────────────────────────────────────────────
        FOOTER
     ───────────────────────────────────────────────────────────── */
     .main-footer {
-      background: var(--bg-footer);
-      color: var(--text-footer);
-      padding: 3rem 1.5rem 2rem;
-      margin-top: 4rem;
-      text-align: center;
+      background: var(--bg-footer); color: var(--text-footer);
+      padding: 3rem 1.5rem 2rem; margin-top: 4rem; text-align: center;
       border-top: 1px solid rgba(255,255,255,0.05);
-      /* Safe area pour le footer */
       padding-bottom: max(2rem, env(safe-area-inset-bottom)); 
     }
-    .footer-content {
-      max-width: 600px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 1.2rem;
-    }
-    .footer-logo {
-      font-size: 1.5rem;
-      font-weight: 900;
-      color: var(--text-header);
-      letter-spacing: 1px;
-      text-transform: uppercase;
-    }
-    .footer-desc {
-      font-size: 0.95rem;
-      line-height: 1.6;
-      opacity: 0.8;
-      max-width: 400px;
-    }
+    .footer-content { max-width: 600px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; gap: 1.2rem; }
+    .footer-logo { font-size: 1.5rem; font-weight: 900; color: var(--text-header); letter-spacing: 1px; text-transform: uppercase; }
+    .footer-desc { font-size: 0.95rem; line-height: 1.6; opacity: 0.8; max-width: 400px; }
     .social-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      display: inline-flex; align-items: center; gap: 10px;
       background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
-      color: white;
-      text-decoration: none;
-      padding: 0.8rem 1.8rem;
-      border-radius: 50px;
-      font-weight: 600;
-      margin: 1rem 0;
-      font-size: 1rem;
+      color: white; text-decoration: none; padding: 0.8rem 1.8rem; border-radius: 50px;
+      font-weight: 600; margin: 1rem 0; font-size: 1rem;
     }
-    .copyright {
-      font-size: 0.8rem;
-      opacity: 0.5;
-      margin-top: 1rem;
-    }
+    .copyright { font-size: 0.8rem; opacity: 0.5; margin-top: 1rem; }
 
     /* ─────────────────────────────────────────────────────────────
        CART PANEL
     ───────────────────────────────────────────────────────────── */
     .cart-panel {
-      position: fixed; right: 0; top: 0; 
-      width: 400px; max-width: 100%; 
-      
-      /* Hauteur dynamique robuste */
-      height: 100vh;
-      height: calc(var(--vh, 1vh) * 100);
-      
+      position: fixed; right: 0; top: 0; width: 400px; max-width: 100%; 
+      height: 100vh; height: calc(var(--vh, 1vh) * 100);
       background: var(--bg-cart); color: var(--text-cart);
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
-      z-index: 3000; display: flex; flex-direction: column;
-      border-left: 1px solid var(--border-light);
-      
-      /* Safe area pour le panier */
-      padding-top: env(safe-area-inset-top);
-      padding-bottom: env(safe-area-inset-bottom);
-      padding-right: env(safe-area-inset-right);
+      transform: translateX(100%); transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+      z-index: 3000; display: flex; flex-direction: column; border-left: 1px solid var(--border-light);
+      padding-top: env(safe-area-inset-top); padding-bottom: env(safe-area-inset-bottom); padding-right: env(safe-area-inset-right);
     }
     [dir="rtl"] .cart-panel {
-      right: auto; left: 0; 
-      transform: translateX(-100%);
+      right: auto; left: 0; transform: translateX(-100%);
       border-left: none; border-right: 1px solid var(--border-light);
-      padding-right: 0;
-      padding-left: env(safe-area-inset-left);
+      padding-right: 0; padding-left: env(safe-area-inset-left);
     }
     .cart-panel.open { transform: translateX(0); }
 
@@ -475,10 +321,7 @@
 
     .cart-body { flex: 1; overflow-y: auto; padding: 1.5rem; overscroll-behavior: contain; }
 
-    .cart-item {
-      display: flex; gap: 1rem; padding-bottom: 1rem; margin-bottom: 1rem;
-      border-bottom: 1px solid var(--border-light); position: relative;
-    }
+    .cart-item { display: flex; gap: 1rem; padding-bottom: 1rem; margin-bottom: 1rem; border-bottom: 1px solid var(--border-light); position: relative; }
     [dir="rtl"] .cart-item { flex-direction: row-reverse; text-align: right; }
 
     .cart-item-img { width: 70px; height: 70px; object-fit: cover; border-radius: 10px; }
@@ -487,65 +330,46 @@
     .cart-item-supps { font-size: 0.8rem; color: var(--gray); margin-bottom: 4px; }
     
     .remove-btn {
-      position: absolute; top: 0; right: 0;
-      background: none; border: none; color: var(--danger); font-size: 1.2rem; cursor: pointer;
-      opacity: 0.7; transition: opacity 0.2s;
-      padding: 10px; /* Zone de touche agrandie */
+      position: absolute; top: 0; right: 0; background: none; border: none; color: var(--danger);
+      font-size: 1.2rem; cursor: pointer; opacity: 0.7; transition: opacity 0.2s; padding: 10px;
     }
     [dir="rtl"] .remove-btn { right: auto; left: 0; }
 
     .cart-footer { padding: 1.5rem; background: var(--bg-card); border-top: 1px solid var(--border-light); }
-    
     .cart-total-row { display: flex; justify-content: space-between; font-size: 1.3rem; font-weight: 800; margin-bottom: 1.2rem; }
     [dir="rtl"] .cart-total-row { flex-direction: row-reverse; }
 
-    .mode-switch {
-      background: var(--bg-category-btn); padding: 4px; border-radius: 12px;
-      display: flex; margin-bottom: 1.2rem;
-    }
-    .mode-option {
-      flex: 1; text-align: center; padding: 0.8rem; cursor: pointer; border-radius: 10px;
-      font-weight: 600; font-size: 0.9rem; transition: all 0.3s;
-      color: var(--text-card-desc);
-    }
+    .mode-switch { background: var(--bg-category-btn); padding: 4px; border-radius: 12px; display: flex; margin-bottom: 1.2rem; }
+    .mode-option { flex: 1; text-align: center; padding: 0.8rem; cursor: pointer; border-radius: 10px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; color: var(--text-card-desc); }
     .mode-option.active { background: var(--bg-card); color: var(--primary); }
 
     .order-btn {
-      width: 100%; padding: 1.1rem;
-      background: var(--success); color: white; border: none;
+      width: 100%; padding: 1.1rem; background: var(--success); color: white; border: none;
       border-radius: 12px; font-size: 1.1rem; font-weight: 700; cursor: pointer;
       display: flex; align-items: center; justify-content: center; gap: 10px;
-      transition: background 0.3s;
-      touch-action: manipulation;
+      transition: background 0.3s; touch-action: manipulation;
     }
 
     /* ─────────────────────────────────────────────────────────────
        MODALS
     ───────────────────────────────────────────────────────────── */
     .modal {
-      display: none; position: fixed; inset: 0;
-      background: rgba(0,0,0,0.85); z-index: 5000;
+      display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 5000;
       align-items: center; justify-content: center; backdrop-filter: blur(8px);
-      
-      /* Fix pour hauteur 100% sur mobile */
-      height: 100%;
-      height: calc(var(--vh, 1vh) * 100);
+      height: 100%; height: calc(var(--vh, 1vh) * 100);
     }
     .modal.active { display: flex; animation: fadeIn 0.3s ease; }
 
     .modal-content {
-      background: var(--bg-modal); color: var(--text-main);
-      border-radius: 20px; width: 92%; max-width: 500px; max-height: 90vh;
-      overflow-y: auto; 
-      border: 1px solid var(--border-dark);
-      display: flex; flex-direction: column;
-      box-shadow: 0 20px 50px rgba(0,0,0,0.5); /* Ombre légère pour détacher la modale */
+      background: var(--bg-modal); color: var(--text-main); border-radius: 20px;
+      width: 92%; max-width: 500px; max-height: 90vh; overflow-y: auto; 
+      border: 1px solid var(--border-dark); display: flex; flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
 
     .modal-header { padding: 1.5rem; border-bottom: 1px solid var(--border-light); display: flex; justify-content: space-between; align-items: center; }
     .modal-title { margin: 0; font-size: 1.3rem; font-weight: 700; }
     .modal-close { background: none; border: none; font-size: 2rem; cursor: pointer; color: var(--gray); padding: 5px; }
-
     .modal-body { padding: 1.5rem; flex: 1; overflow-y: auto; overscroll-behavior: contain; }
 
     .supplement-row { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
@@ -557,33 +381,25 @@
 
     .modal-footer { padding: 1.5rem; border-top: 1px solid var(--border-light); padding-bottom: max(1.5rem, env(safe-area-inset-bottom)); }
     .confirm-btn {
-      width: 100%; padding: 1rem; background: var(--primary); color: white;
-      border: none; border-radius: 12px; font-weight: 700; font-size: 1.1rem;
-      cursor: pointer; display: flex; justify-content: space-between;
-      touch-action: manipulation;
+      width: 100%; padding: 1rem; background: var(--primary); color: white; border: none;
+      border-radius: 12px; font-weight: 700; font-size: 1.1rem; cursor: pointer;
+      display: flex; justify-content: space-between; touch-action: manipulation;
     }
 
     #success-message {
       position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%) translateY(100px);
-      background: var(--success); color: white; padding: 1rem 2rem;
-      border-radius: 50px; 
+      background: var(--success); color: white; padding: 1rem 2rem; border-radius: 50px; 
       z-index: 6000; font-weight: 600; opacity: 0; transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-      /* Safe area bottom */
       bottom: max(30px, calc(env(safe-area-inset-bottom) + 10px));
     }
     #success-message.show { transform: translateX(-50%) translateY(0); opacity: 1; }
-
     @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
     
     .table-input {
-      width: 100%; padding: 1rem; margin-bottom: 1rem;
-      background: var(--bg-category-btn); border: 2px solid transparent;
-      border-radius: 10px; color: var(--text-main); font-size: 1rem;
-      /* Prevent iOS Zoom on focus */
-      font-size: 16px;
+      width: 100%; padding: 1rem; margin-bottom: 1rem; background: var(--bg-category-btn);
+      border: 2px solid transparent; border-radius: 10px; color: var(--text-main); font-size: 16px;
     }
     .table-input:focus { border-color: var(--primary); outline: none; }
-    
   </style>
 </head>
 <body>
@@ -700,26 +516,18 @@
 
 <script>
 // ──────────────────────────────────────────────────────────────
-// 1. SYSTEME ULTRA-ROBUSTE DE VIEWPORT (ANTI-BUG MOBILE)
+// SYSTEME VIEWPORT / MOBILE FIX
 // ──────────────────────────────────────────────────────────────
-// Cette fonction calcule la hauteur exacte visible (sans barre d'adresse)
-// et la met à jour au redimensionnement ou rotation.
 function setViewportHeight() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty('--vh', `${vh}px`);
 }
-
-// Initialisation immédiate
 setViewportHeight();
-
-// Recalcul sur redimensionnement et orientation
 window.addEventListener('resize', setViewportHeight);
-window.addEventListener('orientationchange', () => {
-    setTimeout(setViewportHeight, 100); // Petit délai pour laisser le navigateur finir la rotation
-});
+window.addEventListener('orientationchange', () => setTimeout(setViewportHeight, 100));
 
 // ──────────────────────────────────────────────────────────────
-// DONNÉES DU MENU (THE GUYS)
+// DONNÉES DU MENU
 // ──────────────────────────────────────────────────────────────
 const products = [
   // --- SANDWICHES ---
@@ -731,7 +539,6 @@ const products = [
   { id: "s6", cat: "Sandwiches", price: 11.9, img: "image/sandwitsh spécial.jpg", name: {fr:"Crunchy", en:"Crunchy", ar:"كرانشي"}, desc: {fr:"Poulet croustillant, cheddar", ar:"دجاج مقرمش، شيدر"} },
   { id: "s7", cat: "Sandwiches", price: 11.9, img: "image/sandwochs Chawarma.jpg", name: {fr:"Philly’s", en:"Philly’s", ar:"فيلي"}, desc: {fr:"Steak émincé, oignons caramélisés, fromage", ar:"ستيك مفروم، بصل مكرمل، جبن"} },
   { id: "s8", cat: "Sandwiches", price: 16.9, img: "image/sandwich thon.jpg", name: {fr:"Viking", en:"Viking", ar:"فايكينغ"}, desc: {fr:"Double portion viande, bacon, fromage fumé", ar:"وجبة مضاعفة لحم، باكون، جبن مدخن"} },
-
   // --- BURGERS ---
   { id: "b1", cat: "Burgers", price: 12.9, img: "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=600", name: {fr:"One Guy", en:"One Guy", ar:"وان غاي"}, desc: {fr:"Bœuf pur, cheddar, laitue, sauce maison", ar:"لحم بقري صافي، شيدر، خس، صوص منزلي"} },
   { id: "b2", cat: "Burgers", price: 15.9, img: "https://images.unsplash.com/photo-1594212699903-ec8a3eca50f5?w=600", name: {fr:"Two Guys", en:"Two Guys", ar:"تو غايز"}, desc: {fr:"Double steak, double cheddar", ar:"دوبل ستيك، دوبل شيدر"} },
@@ -742,7 +549,6 @@ const products = [
   { id: "b7", cat: "Burgers", price: 16.9, img: "https://images.unsplash.com/photo-1607013251379-e6eecfffe234?w=600", name: {fr:"Superb", en:"Superb", ar:"سوبرب"}, desc: {fr:"Champignons sautés, sauce suisse", ar:"فطر سوتيه، صوص سويسري"} },
   { id: "b8", cat: "Burgers", price: 16.9, img: "image/hamberger.jpg", name: {fr:"Tartufo", en:"Tartufo", ar:"تارتوفو"}, desc: {fr:"Crème de truffe, parmesan", ar:"كريمة الكمأة، بارميزان"} },
   { id: "b9", cat: "Burgers", price: 16.9, img: "https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600", name: {fr:"Extrême", en:"Extrême", ar:"إكستريم"}, desc: {fr:"Piquant, Jalapeños, Sauce forte", ar:"حار، هالبينو، صوص حار"} },
-
   // --- TACOS ---
   { id: "t1", cat: "Tacos", price: 11.9, img: "image/tacos chawarma.jpg", name: {fr:"Frenchy", en:"Frenchy", ar:"فرينشي"}, desc: {fr:"Cordon bleu, sauce fromagère", ar:"كوردون بلو، صوص جبن"} },
   { id: "t2", cat: "Tacos", price: 11.9, img: "image/tacos poulet.jpg", name: {fr:"Crousti", en:"Crousti", ar:"كروستي"}, desc: {fr:"Nuggets, frites, cheddar", ar:"ناغتس، بطاطا، شيدر"} },
@@ -751,37 +557,30 @@ const products = [
   { id: "t5", cat: "Tacos", price: 15.9, img: "https://images.unsplash.com/photo-1504544750208-dc0358e63f7f?w=600", name: {fr:"Tasty", en:"Tasty", ar:"تيستي"}, desc: {fr:"Mélange viandes, sauce algérienne", ar:"خليط لحوم، صوص جزائرية"} },
   { id: "t6", cat: "Tacos", price: 16.9, img: "https://images.unsplash.com/photo-1615870216519-2f9fa575fa5c?w=600", name: {fr:"Cheesy", en:"Cheesy", ar:"تشيزي"}, desc: {fr:"Explosion de fromages", ar:"انفجار أجبان"} },
   { id: "t7", cat: "Tacos", price: 16.9, img: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?w=600", name: {fr:"L’Italo", en:"L’Italo", ar:"إيتالو"}, desc: {fr:"Mozzarella, pesto, tomates séchées", ar:"موزاريلا، بيستو، طماطم مجففة"} },
-
   // --- TENDERS ---
   { id: "tn1", cat: "Tenders Box", price: 11.9, img: "image/3 Tenders.jpg", name: {fr:"3 Tenders", en:"3 Tenders", ar:"٣ تندرز"}, desc: {fr:"3 pièces panées maison + sauce", ar:"٣ قطع دجاج مقرمش + صوص"} },
   { id: "tn2", cat: "Tenders Box", price: 21.9, img: "image/6 Tenders.jpg", name: {fr:"6 Tenders", en:"6 Tenders", ar:"٦ تندرز"}, desc: {fr:"6 pièces panées maison + 2 sauces", ar:"٦ قطع دجاج مقرمش + ٢ صوص"} },
-
   // --- FRIES & POUTINE ---
   { id: "fp1", cat: "Fries & Poutine", price: 18.9, img: "image/Poutine 1.jpg", name: {fr:"Poutine 1", en:"Poutine 1", ar:"بوتين ١"}, desc: {fr:"Frites, fromage en grains, sauce brune", ar:"بطاطا، جبن، صوص بني"} },
   { id: "fp2", cat: "Fries & Poutine", price: 24.9, img: "image/Poutine 2.jpg", name: {fr:"Poutine 2", en:"Poutine 2", ar:"بوتين ٢"}, desc: {fr:"Version XL avec viande hachée", ar:"حجم كبير مع لحم مفروم"} },
-
   // --- BOWLS ---
   { id: "bw1", cat: "Bowls", price: 14.9, img: "image/Pasta Chicky's.jpg", name: {fr:"Pasta Chicky's", en:"Pasta Chicky's", ar:"باستا تشيكيز"}, desc: {fr:"Pâtes crémeuses au poulet", ar:"معكرونة بالكريمة والدجاج"} },
   { id: "bw2", cat: "Bowls", price: 15.9, img: "https://images.unsplash.com/photo-1555949258-eb67b1ef0ceb?w=600", name: {fr:"Pasta 5th Avenue", en:"Pasta 5th Avenue", ar:"باستا فيفت أفينيو"}, desc: {fr:"Sauce rosée, champignons", ar:"صوص وردي، فطر"} },
   { id: "bw3", cat: "Bowls", price: 13.9, img: "https://images.unsplash.com/photo-1612927601601-6638404737ce?w=600", name: {fr:"Rice Jiggy", en:"Rice Jiggy", ar:"أرز جيغي"}, desc: {fr:"Riz épicé, légumes sautés", ar:"أرز مبهر، خضار سوتيه"} },
   { id: "bw4", cat: "Bowls", price: 16.9, img: "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600", name: {fr:"Salad Rustic", en:"Salad Rustic", ar:"سلطة روستيك"}, desc: {fr:"Mélange vert, noix, fromage bleu", ar:"خضروات، جوز، جبن أزرق"} },
-
   // --- GRILL CHICKEN ---
   { id: "gr1", cat: "Grill Chicken", price: 12.0, img: "image/Cuisse.jpg", name: {fr:"Cuisse", en:"Leg", ar:"فخذ دجاج"}, desc: {fr:"Grillé à la flamme (12h-18h)", ar:"مشوي على اللهب (١٢-١٨)"} },
   { id: "gr2", cat: "Grill Chicken", price: 22.0, img: "image/Demi-poulet.jpg", name: {fr:"Demi-poulet", en:"Half Chicken", ar:"نصف دجاجة"}, desc: {fr:"Mariné et grillé + garniture", ar:"متبل ومشوي + مقبلات"} },
   { id: "gr3", cat: "Grill Chicken", price: 40.0, img: "https://images.unsplash.com/photo-1532550907401-a500c9a57435?w=600", name: {fr:"Poulet Entier", en:"Whole Chicken", ar:"دجاجة كاملة"}, desc: {fr:"Parfait pour partager", ar:"مثالي للمشاركة"} },
-
   // --- PARTY BOX ---
   { id: "pb1", cat: "Party Box", price: 59.9, img: "image/Mix burgers & tacos pour 3-4.jpg", name: {fr:"Combo Friends", en:"Combo Friends", ar:"كومبو الأصدقاء"}, desc: {fr:"Mix burgers & tacos pour 3-4", ar:"ميكس برغر وتاكوس لـ ٣-٤ أشخاص"} },
   { id: "pb2", cat: "Party Box", price: 79.9, img: "image/Combo Family.jpg", name: {fr:"Combo Family", en:"Combo Family", ar:"كومبو العائلة"}, desc: {fr:"Le festin familial ultime", ar:"وليمة عائلية متكاملة"} },
   { id: "pb3", cat: "Party Box", price: 99.9, img: "image/Combo guys.jpg", name: {fr:"Combo Guys", en:"Combo Guys", ar:"كومبو غايز"}, desc: {fr:"L'expérience complète The Guys", ar:"تجربة ذا غايز الكاملة"} },
-
   // --- DEEP DISH PIZZA ---
   { id: "dd1", cat: "Deep Dish Pizza", price: 24.9, img: "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600", name: {fr:"Chicago", en:"Chicago", ar:"شيكاغو"}, desc: {fr:"Pâte épaisse, extra fromage, pepperoni", ar:"عجينة سميكة، جبن إضافي، بيبيروني"} },
   { id: "dd2", cat: "Deep Dish Pizza", price: 24.9, img: "https://images.unsplash.com/photo-1574071318508-1cdbab80d002?w=600", name: {fr:"Riccardo", en:"Riccardo", ar:"ريكاردو"}, desc: {fr:"Sauce tomate, basilic, mozzarella", ar:"صلصة طماطم، ريحان، موزاريلا"} },
   { id: "dd3", cat: "Deep Dish Pizza", price: 24.9, img: "image/pizza 4 fromage.jpg", name: {fr:"Crispy Guys", en:"Crispy Guys", ar:"كريسبي غايز"}, desc: {fr:"Poulet crispy, sauce blanche", ar:"دجاج كريسبي، صوص أبيض"} },
   { id: "dd4", cat: "Deep Dish Pizza", price: 29.9, img: "https://images.unsplash.com/photo-1604382355076-af4b0eb60143?w=600", name: {fr:"Ricky", en:"Ricky", ar:"ريكي"}, desc: {fr:"Spécialité du chef, bords fourrés", ar:"تخصص الشيف، أطراف محشوة"} },
-
   // --- BOISSONS ---
   { id: "dr1", cat: "Boissons", price: 2.0, img: "image/Eau 0.5 L.jpg", name: {fr:"Eau Minérale", en:"Water", ar:"ماء معدني"}, desc: {fr:"0.5L", ar:"٠.٥ لتر"} },
   { id: "dr2", cat: "Boissons", price: 3.5, img: "https://images.unsplash.com/photo-1622483767028-3f66f32aef97?w=600", name: {fr:"Canette", en:"Soda Can", ar:"مشروب غازي"}, desc: {fr:"Coca, Fanta, Boga...", ar:"كوكا، فانتا، بوقا..."} },
@@ -789,36 +588,15 @@ const products = [
 ];
 
 // ──────────────────────────────────────────────────────────────
-// LOGIQUE OPTIONS & TRADUCTION
+// LOGIQUE
 // ──────────────────────────────────────────────────────────────
-const commonSupplements = [
-  { id: "menu_opt", name: {fr:"Menu (Frites + Boisson)", en:"Meal Deal (Fries+Drink)", ar:"وجبة (بطاطا + مشروب)"}, price: 4.0 },
-];
-
-const tacoSupplements = [
-  { id: "gratine", name: {fr:"Gratiné / Farci", en:"Gratin/Stuffed", ar:"غراتان / محشي"}, price: 3.0 },
-  ...commonSupplements
-];
+const commonSupplements = [ { id: "menu_opt", name: {fr:"Menu (Frites + Boisson)", en:"Meal Deal (Fries+Drink)", ar:"وجبة (بطاطا + مشروب)"}, price: 4.0 } ];
+const tacoSupplements = [ { id: "gratine", name: {fr:"Gratiné / Farci", en:"Gratin/Stuffed", ar:"غراتان / محشي"}, price: 3.0 }, ...commonSupplements ];
 
 const translations = {
-  fr: { 
-    cartTitle: "Votre Panier", order: "Commander sur WhatsApp", total: "Total", 
-    add: "Ajouter", surplace: "Sur Place", emporter: "À Emporter", 
-    placeholder: "Numéro de table (Ex: 12)",
-    added: "Ajouté au panier ! 😋"
-  },
-  en: { 
-    cartTitle: "Your Cart", order: "Order via WhatsApp", total: "Total", 
-    add: "Add", surplace: "Eat In", emporter: "Takeaway", 
-    placeholder: "Table Number (Ex: 12)",
-    added: "Added to cart! 😋"
-  },
-  ar: { 
-    cartTitle: "سلة الطلبات", order: "اطلب عبر واتساب", total: "المجموع", 
-    add: "أضف", surplace: "في المحل", emporter: "سفري", 
-    placeholder: "رقم الطاولة (مثال: ١٢)",
-    added: "تمت الإضافة للسلة! 😋"
-  }
+  fr: { cartTitle: "Votre Panier", order: "Commander sur WhatsApp", total: "Total", add: "Ajouter", surplace: "Sur Place", emporter: "À Emporter", placeholder: "Numéro de table (Ex: 12)", added: "Ajouté au panier ! 😋" },
+  en: { cartTitle: "Your Cart", order: "Order via WhatsApp", total: "Total", add: "Add", surplace: "Eat In", emporter: "Takeaway", placeholder: "Table Number (Ex: 12)", added: "Added to cart! 😋" },
+  ar: { cartTitle: "سلة الطلبات", order: "اطلب عبر واتساب", total: "المجموع", add: "أضف", surplace: "في المحل", emporter: "سفري", placeholder: "رقم الطاولة (مثال: ١٢)", added: "تمت الإضافة للسلة! 😋" }
 };
 
 let cart = [];
@@ -826,32 +604,24 @@ let currentLang = 'fr';
 let orderMode = 'surplace';
 let currentProduct = null;
 let currentSupplements = [];
-let WHATSAPP_NUMBER = "21658052184"; // Numéro Exemple
+let WHATSAPP_NUMBER = "21658052184";
 
-// ──────────────────────────────────────────────────────────────
-// FONCTIONS PRINCIPALES
-// ──────────────────────────────────────────────────────────────
 function init() {
   renderCategories();
   renderMenu('all');
   updateTexts();
-  
-  // Gestion Theme (Default Dark)
-  if(!localStorage.getItem('theme')) {
-    document.documentElement.classList.add('dark');
-  } else {
+  if(!localStorage.getItem('theme')) document.documentElement.classList.add('dark');
+  else {
     if(localStorage.getItem('theme') === 'dark') document.documentElement.classList.add('dark');
     else document.documentElement.classList.remove('dark');
   }
   updateThemeIcon();
 }
 
-// 1. Rendu Catégories
 function renderCategories() {
   const cats = [...new Set(products.map(p => p.cat))];
   const container = document.getElementById('categories');
   container.innerHTML = `<button class="category-btn active" onclick="filterMenu('all', this)">${currentLang === 'ar' ? 'الكل' : 'All'}</button>`;
-  
   cats.forEach(c => {
     let display = c;
     if(currentLang === 'ar') {
@@ -862,11 +632,9 @@ function renderCategories() {
   });
 }
 
-// 2. Rendu Menu
 function renderMenu(cat) {
   const grid = document.getElementById('menu-grid');
   grid.innerHTML = '';
-  
   const items = cat === 'all' ? products : products.filter(p => p.cat === cat);
   
   items.forEach(p => {
@@ -874,10 +642,11 @@ function renderMenu(cat) {
     card.className = 'menu-card';
     card.onclick = () => openProductModal(p);
     
+    // IMAGE HACK: Padding-top hack (bulletproof) + Absolute Image
     card.innerHTML = `
       <div class="product-image-wrapper">
         <img src="${p.img}" class="product-image" loading="lazy" alt="${p.name[currentLang]}">
-        ${p.cat === 'Sandwiches' || p.cat === 'Burgers' || p.cat === 'Tacos' ? '<div class="card-badge">+ Menu Option</div>' : ''}
+        ${(p.cat === 'Sandwiches' || p.cat === 'Burgers' || p.cat === 'Tacos') ? '<div class="card-badge">+ Menu Option</div>' : ''}
       </div>
       <div class="card-content">
         <div class="card-header">
@@ -900,7 +669,6 @@ function filterMenu(cat, btn) {
   renderMenu(cat);
 }
 
-// 3. Modal & Suppléments
 function openProductModal(product) {
   let supps = [];
   if (['Sandwiches', 'Burgers'].includes(product.cat)) supps = commonSupplements;
@@ -910,14 +678,11 @@ function openProductModal(product) {
     addToCart(product, []);
     return;
   }
-
   currentProduct = product;
   currentSupplements = supps.map(s => ({...s, qty:0}));
-  
   document.getElementById('modal-product-name').innerText = product.name[currentLang];
   renderSupplementsList();
   updateModalTotal();
-  
   const modal = document.getElementById('supplements-modal');
   modal.style.display = 'flex';
   setTimeout(() => modal.classList.add('active'), 10);
@@ -926,7 +691,6 @@ function openProductModal(product) {
 function renderSupplementsList() {
   const container = document.getElementById('supplements-list');
   container.innerHTML = '';
-  
   currentSupplements.forEach((s, idx) => {
     container.innerHTML += `
       <div class="supplement-row">
@@ -971,26 +735,11 @@ function addToCartConfirm() {
   closeModal();
 }
 
-// 4. Gestion Panier
 function addToCart(product, supps) {
   const suppKey = JSON.stringify(supps.map(s => ({id:s.id, qty:s.qty})));
-  
   const existing = cart.find(i => i.pid === product.id && i.suppKey === suppKey);
-  
-  if(existing) {
-    existing.qty++;
-  } else {
-    cart.push({
-      pid: product.id,
-      name: product.name,
-      price: product.price,
-      img: product.img,
-      qty: 1,
-      supps: supps,
-      suppKey: suppKey
-    });
-  }
-  
+  if(existing) existing.qty++;
+  else cart.push({ pid: product.id, name: product.name, price: product.price, img: product.img, qty: 1, supps: supps, suppKey: suppKey });
   renderCart();
   showToast();
   document.getElementById('cart-panel').classList.add('open');
@@ -1001,20 +750,16 @@ function renderCart() {
   container.innerHTML = '';
   let total = 0;
   let count = 0;
-  
   cart.forEach((item, index) => {
     let itemPrice = item.price;
     let suppText = '';
-    
     item.supps.forEach(s => {
       itemPrice += (s.price * s.qty);
       suppText += `<div>+ ${s.name[currentLang]} (x${s.qty})</div>`;
     });
-    
     const lineTotal = itemPrice * item.qty;
     total += lineTotal;
     count += item.qty;
-    
     container.innerHTML += `
       <div class="cart-item">
         <img src="${item.img}" class="cart-item-img">
@@ -1027,13 +772,9 @@ function renderCart() {
       </div>
     `;
   });
-  
   document.getElementById('cart-total').innerText = total.toFixed(2) + " DT";
   document.getElementById('cart-count').innerText = count;
-  
-  if(cart.length === 0) {
-    container.innerHTML = `<div style="text-align:center; padding:2rem; opacity:0.6;">${currentLang==='ar'?'السلة فارغة':'Empty Cart'}</div>`;
-  }
+  if(cart.length === 0) container.innerHTML = `<div style="text-align:center; padding:2rem; opacity:0.6;">${currentLang==='ar'?'السلة فارغة':'Empty Cart'}</div>`;
 }
 
 function removeItem(index) {
@@ -1041,10 +782,8 @@ function removeItem(index) {
   renderCart();
 }
 
-// 5. Commande WhatsApp & Numérotation
 document.getElementById('confirm-order').onclick = () => {
   if(cart.length === 0) return;
-  
   const tableInput = document.getElementById('table-number');
   if(orderMode === 'surplace' && !tableInput.value) {
     tableInput.style.borderColor = 'var(--danger)';
@@ -1052,29 +791,24 @@ document.getElementById('confirm-order').onclick = () => {
     return;
   }
   
-  // GESTION NUMÉRO DE COMMANDE (Journalier)
-  const todayStr = new Date().toDateString(); // Ex: "Tue Jan 28 2026"
+  const todayStr = new Date().toDateString();
   const lastDate = localStorage.getItem('theguys_last_date');
   let orderCount = parseInt(localStorage.getItem('theguys_order_count') || '0');
 
-  // Reset si nouvelle journée
   if(lastDate !== todayStr) {
     orderCount = 1;
     localStorage.setItem('theguys_last_date', todayStr);
   } else {
     orderCount++;
   }
-  // Sauvegarde
   localStorage.setItem('theguys_order_count', orderCount);
   
-  // Construction du Titre selon la langue
   let orderTitle = "";
   if(currentLang === 'fr') orderTitle = `Nouvelle commande #${orderCount}`;
   else if(currentLang === 'en') orderTitle = `New Order #${orderCount}`;
   else orderTitle = `طلب جديد رقم ${orderCount}`;
 
-  // Construction Message WhatsApp
-  let msg = `*${orderTitle}* \n`; // Titre en gras tout en haut
+  let msg = `*${orderTitle}* \n`;
   msg += `────────────────────────────────\n`;
   msg += `📅 ${new Date().toLocaleString()}\n`;
   msg += `📍 Type: *${orderMode === 'surplace' ? 'Sur Place (Table ' + tableInput.value + ')' : 'À Emporter'}*\n`;
@@ -1085,7 +819,6 @@ document.getElementById('confirm-order').onclick = () => {
     let itemTotal = item.price;
     item.supps.forEach(s => itemTotal += (s.price * s.qty));
     total += (itemTotal * item.qty);
-    
     msg += `▫️ *${item.qty}x ${item.name.fr}*\n`;
     if(item.supps.length) {
       item.supps.forEach(s => msg += `   + ${s.name.fr} (x${s.qty})\n`);
@@ -1098,21 +831,17 @@ document.getElementById('confirm-order').onclick = () => {
   
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   
-  // Reset
   cart = [];
   renderCart();
   document.getElementById('cart-panel').classList.remove('open');
 };
 
-// 6. UI & Events
 function setLang(l) {
   currentLang = l;
   document.documentElement.lang = l;
   document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
-  
   document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
   event.target.classList.add('active');
-  
   updateTexts();
   renderCategories();
   renderMenu('all');
@@ -1125,7 +854,6 @@ function updateTexts() {
   document.getElementById('btn-order-text').innerText = t.order;
   document.getElementById('table-number').placeholder = t.placeholder;
   document.getElementById('success-message').innerText = t.added;
-  
   document.querySelector('[data-mode="surplace"]').innerText = t.surplace;
   document.querySelector('[data-mode="emporter"]').innerText = t.emporter;
 }
@@ -1134,7 +862,6 @@ function setOrderMode(mode) {
   orderMode = mode;
   document.querySelectorAll('.mode-option').forEach(el => el.classList.remove('active'));
   document.querySelector(`[data-mode="${mode}"]`).classList.add('active');
-  
   const tableWrap = document.getElementById('table-wrapper');
   if(mode === 'surplace') tableWrap.style.display = 'block';
   else tableWrap.style.display = 'none';
@@ -1148,7 +875,6 @@ function showToast() {
 
 document.getElementById('cart-toggle').onclick = () => document.getElementById('cart-panel').classList.add('open');
 document.getElementById('cart-close').onclick = () => document.getElementById('cart-panel').classList.remove('open');
-
 document.getElementById('theme-toggle').onclick = () => {
   document.documentElement.classList.toggle('dark');
   const isDark = document.documentElement.classList.contains('dark');
@@ -1163,7 +889,6 @@ function updateThemeIcon() {
 }
 
 init();
-
 </script>
 </body>
 </html>
