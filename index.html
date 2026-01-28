@@ -198,7 +198,7 @@
     ───────────────────────────────────────────────────────────── */
     .menu-grid { 
       display: grid; 
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); 
       gap: 1.2rem; 
       padding-bottom: 2rem;
     }
@@ -225,8 +225,6 @@
    .product-image-wrapper {
   width: 100%;
   aspect-ratio: 16 / 10;
-  min-height: 100px;
-  max-height: 240px;
   overflow: hidden;
   background: #111;
 }
@@ -462,6 +460,120 @@
       border: 2px solid transparent; border-radius: 10px; color: var(--text-main); font-size: 16px;
     }
     .table-input:focus { border-color: var(--primary); outline: none; }
+
+    /* ─────────────────────────────────────────────────────────────
+       RESPONSIVE IMPROVEMENTS – MOBILE FIRST + PROGRESSIVE
+    ───────────────────────────────────────────────────────────── */
+
+    @media (max-width: 480px) {
+      .header-modern {
+        padding: clamp(0.6rem, 3vw, 0.8rem) clamp(0.8rem, 4vw, 1rem);
+        gap: clamp(0.4rem, 2.5vw, 0.6rem);
+      }
+
+      .logo {
+        width: clamp(38px, 12vw, 45px);
+        height: clamp(38px, 12vw, 45px);
+      }
+
+      .brand-text h1 {
+        font-size: clamp(1rem, 5vw, 1.2rem);
+      }
+
+      .lang-btn {
+        font-size: clamp(0.65rem, 3.5vw, 0.7rem);
+        padding: clamp(0.25rem, 2vw, 0.3rem) clamp(0.5rem, 3vw, 0.6rem);
+      }
+
+      .cart-btn, .theme-toggle-btn {
+        width: clamp(34px, 10vw, 38px);
+        height: clamp(34px, 10vw, 38px);
+        font-size: clamp(0.95rem, 4.5vw, 1.1rem);
+      }
+
+      .cart-count {
+        width: clamp(16px, 5vw, 18px);
+        height: clamp(16px, 5vw, 18px);
+        font-size: clamp(0.58rem, 3.2vw, 0.65rem);
+        top: -4px;
+        right: -4px;
+      }
+
+      .promo-marquee {
+        height: clamp(32px, 10vw, 40px);
+        line-height: clamp(32px, 10vw, 40px);
+        font-size: clamp(0.75rem, 4vw, 0.85rem);
+      }
+
+      .category-btn {
+        padding: clamp(0.4rem, 2.5vw, 0.5rem) clamp(0.9rem, 4vw, 1.2rem);
+        font-size: clamp(0.78rem, 4.2vw, 0.85rem);
+      }
+
+      .menu-grid {
+        gap: clamp(0.6rem, 3vw, 1.2rem);
+        padding: 0 clamp(0.4rem, 3vw, 1rem);
+      }
+
+      .product-image-wrapper {
+        aspect-ratio: clamp(1.1, 1.333, 1.6);
+      }
+
+      .card-title {
+        font-size: clamp(0.8rem, 4.5vw, 0.9rem);
+      }
+
+      .card-desc {
+        font-size: clamp(0.6rem, 3.8vw, 0.65rem);
+      }
+
+      .price {
+        font-size: clamp(0.85rem, 4.8vw, 0.95rem);
+      }
+
+      .add-btn {
+        padding: clamp(0.3rem, 2vw, 0.35rem) clamp(0.6rem, 3vw, 0.7rem);
+        font-size: clamp(0.68rem, 4vw, 0.75rem);
+      }
+    }
+
+    @media (max-width: 374px) {
+      .categories {
+        padding: 0 clamp(0.5rem, 3vw, 1rem);
+      }
+
+      .category-btn {
+        font-size: clamp(0.74rem, 4.2vw, 0.82rem);
+      }
+
+      .cart-panel {
+        width: 94%;
+      }
+
+      .modal-content {
+        width: 94%;
+      }
+    }
+
+    @media (max-width: 320px) {
+      .promo-video-wrapper {
+        margin: clamp(0.5rem, 3vw, 1rem) auto;
+      }
+
+      .menu-grid {
+        gap: clamp(0.5rem, 3vw, 0.7rem);
+      }
+    }
+
+    @media (orientation: landscape) and (max-height: 500px) {
+      .menu-grid {
+        gap: clamp(0.7rem, 3.5vw, 1rem);
+      }
+
+      .product-image-wrapper {
+        aspect-ratio: 16 / 9;
+      }
+    }
   </style>
 </head>
 <body>
@@ -678,12 +790,17 @@ function init() {
     else document.documentElement.classList.remove('dark');
   }
   updateThemeIcon();
+  attachAddButtonListeners(); // Nouvelle fonction pour attacher les listeners
 }
 
 function renderCategories() {
   const cats = [...new Set(products.map(p => p.cat))];
   const container = document.getElementById('categories');
-  container.innerHTML = `<button class="category-btn active" onclick="filterMenu('all', this)">${currentLang === 'ar' ? 'الكل' : 'All'}</button>`;
+  container.innerHTML = '';
+
+  const allText = currentLang === 'ar' ? 'الكل' : 'All';
+  container.innerHTML += `<button class="category-btn active" onclick="filterMenu('all', this)">${allText}</button>`;
+
   cats.forEach(c => {
     let display = c;
     if(currentLang === 'ar') {
@@ -702,9 +819,8 @@ function renderMenu(cat) {
   items.forEach(p => {
     const card = document.createElement('div');
     card.className = 'menu-card';
+    card.dataset.id = p.id; // Ajout du data-id pour identifier le produit
     
-    
-    // IMAGE HACK: Padding-top hack (bulletproof) + Absolute Image
     card.innerHTML = `
       <div class="product-image-wrapper">
         <img src="${p.img}" class="product-image" loading="lazy" alt="${p.name[currentLang]}">
@@ -717,12 +833,38 @@ function renderMenu(cat) {
         <div class="card-desc">${p.desc[currentLang]}</div>
         <div class="card-footer">
           <div class="price">${p.price.toFixed(2)} DT</div>
-          <button class="add-btn"><i class="fas fa-plus"></i></button>
+          <button class="add-btn" data-product-id="${p.id}">
+            <i class="fas fa-plus"></i>
+          </button>
         </div>
       </div>
     `;
     grid.appendChild(card);
   });
+  attachAddButtonListeners(); // Réattacher après rendu dynamique
+}
+
+function attachAddButtonListeners() {
+  const grid = document.getElementById('menu-grid');
+  grid.removeEventListener('click', handleAddClick); // Éviter les doublons
+  grid.addEventListener('click', handleAddClick);
+}
+
+function handleAddClick(e) {
+  const btn = e.target.closest('.add-btn');
+  if (!btn) return;
+  
+  const card = btn.closest('.menu-card');
+  if (!card) return;
+  
+  const productId = btn.dataset.productId;
+  const product = products.find(p => p.id === productId);
+  
+  if (product) {
+    openProductModal(product);
+  } else {
+    console.warn('Produit non trouvé pour ID:', productId);
+  }
 }
 
 function filterMenu(cat, btn) {
@@ -836,7 +978,7 @@ function renderCart() {
   });
   document.getElementById('cart-total').innerText = total.toFixed(2) + " DT";
   document.getElementById('cart-count').innerText = count;
-  if(cart.length === 0) container.innerHTML = `<div style="text-align:center; padding:2rem; opacity:0.6;">${currentLang==='ar'?'السلة فارغة':'Empty Cart'}</div>`;
+  if(cart.length === 0) container.innerHTML = `<div style="text-align:center; padding:2rem; opacity:0.6;">${currentLang==='ar'?'السلة فارغة':'Panier vide'}</div>`;
 }
 
 function removeItem(index) {
@@ -847,9 +989,10 @@ function removeItem(index) {
 document.getElementById('confirm-order').onclick = () => {
   if(cart.length === 0) return;
   const tableInput = document.getElementById('table-number');
-  if(orderMode === 'surplace' && !tableInput.value) {
+  if(orderMode === 'surplace' && !tableInput.value.trim()) {
     tableInput.style.borderColor = 'var(--danger)';
     tableInput.focus();
+    setTimeout(() => tableInput.style.borderColor = '', 2000);
     return;
   }
   
@@ -870,26 +1013,27 @@ document.getElementById('confirm-order').onclick = () => {
   else if(currentLang === 'en') orderTitle = `New Order #${orderCount}`;
   else orderTitle = `طلب جديد رقم ${orderCount}`;
 
-  let msg = `*${orderTitle}* \n`;
-  msg += `────────────────────────────────\n`;
-  msg += `📅 ${new Date().toLocaleString()}\n`;
+  let msg = `*${orderTitle}*\n`;
+  msg += `───────────────────────────────\n`;
+  msg += `📅 ${new Date().toLocaleString(currentLang)}\n`;
   msg += `📍 Type: *${orderMode === 'surplace' ? 'Sur Place (Table ' + tableInput.value + ')' : 'À Emporter'}*\n`;
-  msg += `────────────────────────────────\n`;
+  msg += `───────────────────────────────\n\n`;
   
-  let total = 0;
+  let grandTotal = 0;
   cart.forEach(item => {
     let itemTotal = item.price;
     item.supps.forEach(s => itemTotal += (s.price * s.qty));
-    total += (itemTotal * item.qty);
+    const lineTotal = itemTotal * item.qty;
+    grandTotal += lineTotal;
     msg += `▫️ *${item.qty}x ${item.name.fr}*\n`;
     if(item.supps.length) {
       item.supps.forEach(s => msg += `   + ${s.name.fr} (x${s.qty})\n`);
     }
-    msg += `   💰 ${(itemTotal * item.qty).toFixed(2)} DT\n`;
+    msg += `   💰 ${lineTotal.toFixed(2)} DT\n\n`;
   });
   
-  msg += `────────────────────────────────\n`;
-  msg += `*TOTAL: ${total.toFixed(2)} DT*\n`;
+  msg += `───────────────────────────────\n`;
+  msg += `*TOTAL: ${grandTotal.toFixed(2)} DT*`;
   
   window.open(`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`, '_blank');
   
